@@ -1,24 +1,37 @@
-import React, { ReactElement } from "react";
-import logo from "./logo.svg";
+import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
 
 function App(): ReactElement {
+  /**
+   * @todo Move final constants to utilities file.
+   */
+  const BASE_URL = "https://pokeapi.co/api/v2/";
+  const NUMBER_OF_POKEMON = 898;
+
+  /**
+   * @todo Create interface to remove `any`.
+   */
+  const [pokemonList, setPokemonList] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.results);
+        setPokemonList(data.results);
+      });
+  }, []);
+
+  /**
+   * @todo Move `listPokemon` to new component.
+   */
+  const listPokemon = pokemonList.map((pokemon) => (
+    <li key={pokemon.name}>{pokemon.name}</li>
+  ));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>{listPokemon}</ul>
     </div>
   );
 }
