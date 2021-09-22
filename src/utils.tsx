@@ -8,3 +8,8 @@ export const NUMBER_OF_POKEMON_GEN5 = 156;
 export const NUMBER_OF_POKEMON_GEN6 = 72;
 export const NUMBER_OF_POKEMON_GEN7 = 88;
 export const NUMBER_OF_POKEMON_GEN8 = 89;
+
+export interface BasicPokemon {
+  name: string;
+  url: string;
+}

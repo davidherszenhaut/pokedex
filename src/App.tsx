@@ -1,13 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
 import PokeHeader from "./PokeHeader/PokeHeader";
-import { BASE_URL, NUMBER_OF_POKEMON_TOTAL } from "./utils";
+import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "./utils";
 
 function App(): ReactElement {
-  /**
-   * @todo Create interface to remove `any`.
-   */
-  const [pokemonList, setPokemonList] = useState<any[]>([]);
+  const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON_TOTAL}`)
