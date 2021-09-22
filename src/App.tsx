@@ -1,21 +1,16 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
 import PokeHeader from "./PokeHeader/PokeHeader";
+import { BASE_URL, NUMBER_OF_POKEMON_TOTAL } from "./utils";
 
 function App(): ReactElement {
-  /**
-   * @todo Move final constants to utilities file.
-   */
-  const BASE_URL = "https://pokeapi.co/api/v2/";
-  const NUMBER_OF_POKEMON = 898;
-
   /**
    * @todo Create interface to remove `any`.
    */
   const [pokemonList, setPokemonList] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON}`)
+    fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON_TOTAL}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data.results);
