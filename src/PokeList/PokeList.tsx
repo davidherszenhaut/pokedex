@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import PokeListItem from "../PokeListItem/PokeListItem";
 import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
 const PokeList = (): ReactElement => {
@@ -12,10 +13,13 @@ const PokeList = (): ReactElement => {
       });
   }, []);
 
-  const listPokemon = pokemonList.map((pokemon) => (
-    <div key={pokemon.name}>
-      <a href={pokemon.url}>{pokemon.name}</a>
-    </div>
+  const listPokemon = pokemonList.map((pokemon, index) => (
+    <PokeListItem
+      key={pokemon.name}
+      name={pokemon.name}
+      url={pokemon.url}
+      number={index + 1}
+    />
   ));
 
   return <div>{listPokemon}</div>;
