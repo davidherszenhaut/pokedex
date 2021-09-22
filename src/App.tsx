@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import "./App.css";
+import PokeHeader from "./PokeHeader/PokeHeader";
 
 function App(): ReactElement {
   /**
@@ -31,6 +32,7 @@ function App(): ReactElement {
 
   return (
     <div className="App">
+      <PokeHeader />
       <ul>{listPokemon}</ul>
     </div>
   );
