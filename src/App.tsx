@@ -25,7 +25,7 @@ function App(): ReactElement {
   return (
     <div className="App">
       <PokeHeader />
-      <ul>{listPokemon}</ul>
+      {pokemonList.length > 0 ? <ul>{listPokemon}</ul> : null}
     </div>
   );
 }
