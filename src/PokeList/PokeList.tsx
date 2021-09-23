@@ -16,9 +16,9 @@ const PokeList = (): ReactElement => {
   const listPokemon = pokemonList.map((pokemon, index) => (
     <PokeListItem
       key={pokemon.name}
-      name={pokemon.name}
-      url={pokemon.url}
-      number={index + 1}
+      pokeName={pokemon.name}
+      pokeUrl={pokemon.url}
+      pokeNumber={index + 1}
     />
   ));
 

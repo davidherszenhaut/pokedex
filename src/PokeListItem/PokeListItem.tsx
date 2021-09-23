@@ -1,11 +1,17 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { BASE_URL } from "../utils";
 
-const PokeListItem = (props: {
-  name: string;
-  url: string;
-  number: number;
-}): ReactElement => {
+interface Props {
+  pokeName: string;
+  pokeUrl: string;
+  pokeNumber: number;
+}
+
+const PokeListItem = ({
+  pokeName,
+  pokeUrl,
+  pokeNumber,
+}: Props): ReactElement => {
   const [pokemonSpriteURL, setPokemonSpriteURL] = useState<string>("");
   /**
    * @todo Move selectedPokemon state up to PokeList.
@@ -13,16 +19,16 @@ const PokeListItem = (props: {
   const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
 
   useEffect(() => {
-    fetch(`${BASE_URL}pokemon/${props.number}`)
+    fetch(`${BASE_URL}pokemon/${pokeNumber}`)
       .then((response) => response.json())
       .then((data) => setPokemonSpriteURL(data.sprites.front_default));
   }, []);
 
   const handleClick = () => {
-    console.log(`#${props.number}. ${props.name}`);
+    console.log(`#${pokeNumber}. ${pokeName}`);
     selectedPokemon > 0
       ? setSelectedPokemon(0)
-      : setSelectedPokemon(props.number);
+      : setSelectedPokemon(pokeNumber);
   };
 
   /**
@@ -31,16 +37,12 @@ const PokeListItem = (props: {
   return (
     <div>
       <p>
-        <a href={props.url}>
-          #{props.number}. {props.name}
+        <a href={pokeUrl}>
+          #{pokeNumber}. {pokeName}
         </a>
       </p>
       {pokemonSpriteURL ? (
-        <img
-          src={pokemonSpriteURL}
-          alt={props.name}
-          onClick={handleClick}
-        ></img>
+        <img src={pokemonSpriteURL} alt={pokeName} onClick={handleClick}></img>
       ) : null}
       {selectedPokemon > 0 ? "details" : "no details"}
     </div>
