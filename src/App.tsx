@@ -10,7 +10,7 @@ function App(): ReactElement {
     <div className="App">
       <PokeHeader />
       <PokeSearch setSearchText={setSearchText} />
-      <PokeList searchText={searchText} />
+      <PokeList searchText={searchText.toLowerCase()} />
     </div>
   );
 }
