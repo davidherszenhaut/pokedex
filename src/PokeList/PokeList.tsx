@@ -22,9 +22,9 @@ const PokeList = ({ searchText }: Props): ReactElement => {
   const listPokemon = pokemonList.map((pokemon, index) => (
     <PokeListItem
       key={pokemon.name}
-      pokeName={pokemon.name}
-      pokeUrl={pokemon.url}
-      pokeNumber={index + 1}
+      pokemonName={pokemon.name}
+      pokemonUrl={pokemon.url}
+      pokemonNumber={index + 1}
       selectedPokemon={selectedPokemon}
       setSelectedPokemon={setSelectedPokemon}
       searchText={searchText}
@@ -34,7 +34,7 @@ const PokeList = ({ searchText }: Props): ReactElement => {
   return (
     <div>
       {selectedPokemon !== 0 ? (
-        <PokeDetail pokeNumber={selectedPokemon} />
+        <PokeDetail pokemonNumber={selectedPokemon} />
       ) : null}
       {listPokemon}
     </div>

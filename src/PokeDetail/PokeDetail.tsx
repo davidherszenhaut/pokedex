@@ -2,25 +2,25 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { BASE_URL } from "../utils";
 
 interface Props {
-  pokeNumber: number;
+  pokemonNumber: number;
 }
 
-const PokeDetail = ({ pokeNumber }: Props): ReactElement => {
-  const [pokeName, setPokeName] = useState<string>("");
-  const [pokeSpriteUrl, setPokeSpriteUrl] = useState<string>("");
+const PokeDetail = ({ pokemonNumber }: Props): ReactElement => {
+  const [pokemonName, setPokemonName] = useState<string>("");
+  const [pokemonSpriteUrl, setPokeSpriteUrl] = useState<string>("");
 
   useEffect(() => {
-    fetch(`${BASE_URL}pokemon/${pokeNumber}`)
+    fetch(`${BASE_URL}pokemon/${pokemonNumber}`)
       .then((response) => response.json())
       .then((data) => {
         setPokeSpriteUrl(data.sprites.front_default);
-        setPokeName(data.name);
+        setPokemonName(data.name);
       });
-  }, [pokeNumber]);
+  }, [pokemonNumber]);
 
   return (
     <div>
-      {pokeName} - {pokeSpriteUrl}
+      {pokemonName} - {pokemonSpriteUrl}
     </div>
   );
 };
