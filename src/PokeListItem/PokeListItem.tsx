@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { BASE_URL } from "../utils";
+import { BASE_URL, capitalize } from "../utils";
 
 type SetSelectedPokemon = (pokeNumber: number) => void;
 
@@ -42,7 +42,7 @@ const PokeListItem = ({
     <div>
       <p>
         <a href={pokeUrl}>
-          #{pokemonNumber}. {pokeName}
+          #{pokemonNumber}. {capitalize(pokeName)}
         </a>
       </p>
       {pokemonSpriteURL ? (

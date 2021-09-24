@@ -14,6 +14,17 @@ export interface BasicPokemon {
   url: string;
 }
 
+/**
+ * Capitalizes a string by uppercasing the first letter and
+ * lowercasing the rest. Returns an empty string if given
+ * an empty string.
+ * @param text A word or string to be capitalized.
+ * @returns A capitalized version of the input string.
+ */
 export const capitalize = (text: string): string => {
-  return text;
+  if (text === "") return "";
+  if (text.length === 1) return text.toUpperCase();
+  return (
+    text.slice(0, 1).toUpperCase() + text.slice(1, text.length).toLowerCase()
+  );
 };
