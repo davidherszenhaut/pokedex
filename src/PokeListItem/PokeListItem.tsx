@@ -9,6 +9,7 @@ interface Props {
   pokeNumber: number;
   selectedPokemon: number;
   setSelectedPokemon: SetSelectedPokemon;
+  searchText: string;
 }
 
 const PokeListItem = ({
@@ -17,13 +18,18 @@ const PokeListItem = ({
   pokeNumber,
   selectedPokemon,
   setSelectedPokemon,
+  searchText,
 }: Props): ReactElement => {
   const [pokemonSpriteURL, setPokemonSpriteURL] = useState<string>("");
+  const [pokemonNumber, setPokemonNumber] = useState<number>(pokeNumber);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon/${pokeNumber}`)
       .then((response) => response.json())
-      .then((data) => setPokemonSpriteURL(data.sprites.front_default));
+      .then((data) => {
+        setPokemonSpriteURL(data.sprites.front_default);
+        setPokemonNumber(data.id);
+      });
   }, []);
 
   const handleClick = () => {
@@ -32,17 +38,19 @@ const PokeListItem = ({
       : setSelectedPokemon(pokeNumber);
   };
 
-  return (
+  return pokeName.includes(searchText) ? (
     <div>
       <p>
         <a href={pokeUrl}>
-          #{pokeNumber}. {pokeName}
+          #{pokemonNumber}. {pokeName}
         </a>
       </p>
       {pokemonSpriteURL ? (
         <img src={pokemonSpriteURL} alt={pokeName} onClick={handleClick}></img>
       ) : null}
     </div>
+  ) : (
+    <></>
   );
 };
 

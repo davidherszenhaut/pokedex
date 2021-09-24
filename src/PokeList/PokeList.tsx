@@ -3,7 +3,11 @@ import PokeDetail from "../PokeDetail/PokeDetail";
 import PokeListItem from "../PokeListItem/PokeListItem";
 import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
-const PokeList = (): ReactElement => {
+interface Props {
+  searchText: string;
+}
+
+const PokeList = ({ searchText }: Props): ReactElement => {
   const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
 
@@ -23,6 +27,7 @@ const PokeList = (): ReactElement => {
       pokeNumber={index + 1}
       selectedPokemon={selectedPokemon}
       setSelectedPokemon={setSelectedPokemon}
+      searchText={searchText}
     />
   ));
 

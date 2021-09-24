@@ -13,3 +13,7 @@ export interface BasicPokemon {
   name: string;
   url: string;
 }
+
+export const capitalize = (text: string): string => {
+  return text;
+};
