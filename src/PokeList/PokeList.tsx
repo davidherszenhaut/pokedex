@@ -4,6 +4,7 @@ import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
 const PokeList = (): ReactElement => {
   const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON_TOTAL}`)
@@ -19,6 +20,8 @@ const PokeList = (): ReactElement => {
       pokeName={pokemon.name}
       pokeUrl={pokemon.url}
       pokeNumber={index + 1}
+      selectedPokemon={selectedPokemon}
+      setSelectedPokemon={setSelectedPokemon}
     />
   ));
 
