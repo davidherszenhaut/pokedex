@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import PokeDetail from "../PokeDetail/PokeDetail";
 import PokeListItem from "../PokeListItem/PokeListItem";
 import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
@@ -25,7 +26,14 @@ const PokeList = (): ReactElement => {
     />
   ));
 
-  return <div>{listPokemon}</div>;
+  return (
+    <div>
+      {selectedPokemon !== 0 ? (
+        <PokeDetail pokeNumber={selectedPokemon} />
+      ) : null}
+      {listPokemon}
+    </div>
+  );
 };
 
 export default PokeList;

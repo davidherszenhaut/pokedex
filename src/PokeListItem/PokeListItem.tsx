@@ -32,9 +32,6 @@ const PokeListItem = ({
       : setSelectedPokemon(pokeNumber);
   };
 
-  /**
-   * @todo Move details to new component.
-   */
   return (
     <div>
       <p>
@@ -45,7 +42,6 @@ const PokeListItem = ({
       {pokemonSpriteURL ? (
         <img src={pokemonSpriteURL} alt={pokeName} onClick={handleClick}></img>
       ) : null}
-      <p>{selectedPokemon === pokeNumber ? "details" : "no details"}</p>
     </div>
   );
 };
