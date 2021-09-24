@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from "react";
-import "./App.css";
 import PokeHeader from "./PokeHeader/PokeHeader";
 import PokeList from "./PokeList/PokeList";
 import PokeSearch from "./PokeSearch/PokeSearch";
