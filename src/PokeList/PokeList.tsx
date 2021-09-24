@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect, useState } from "react";
+import PokeDetail from "../PokeDetail/PokeDetail";
 import PokeListItem from "../PokeListItem/PokeListItem";
 import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
 const PokeList = (): ReactElement => {
   const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
+  const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON_TOTAL}`)
@@ -16,13 +18,22 @@ const PokeList = (): ReactElement => {
   const listPokemon = pokemonList.map((pokemon, index) => (
     <PokeListItem
       key={pokemon.name}
-      name={pokemon.name}
-      url={pokemon.url}
-      number={index + 1}
+      pokeName={pokemon.name}
+      pokeUrl={pokemon.url}
+      pokeNumber={index + 1}
+      selectedPokemon={selectedPokemon}
+      setSelectedPokemon={setSelectedPokemon}
     />
   ));
 
-  return <div>{listPokemon}</div>;
+  return (
+    <div>
+      {selectedPokemon !== 0 ? (
+        <PokeDetail pokeNumber={selectedPokemon} />
+      ) : null}
+      {listPokemon}
+    </div>
+  );
 };
 
 export default PokeList;
