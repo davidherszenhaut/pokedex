@@ -23,7 +23,6 @@ const PokeList = ({ searchText }: Props): ReactElement => {
     <PokeListItem
       key={pokemon.name}
       pokemonName={pokemon.name}
-      pokemonUrl={pokemon.url}
       pokemonNumber={index + 1}
       selectedPokemon={selectedPokemon}
       setSelectedPokemon={setSelectedPokemon}
@@ -32,7 +31,10 @@ const PokeList = ({ searchText }: Props): ReactElement => {
   ));
 
   return (
-    <div>
+    <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-4">
+      {/**
+       * @todo Move PokeDetail up to App.
+       */}
       {selectedPokemon !== 0 ? (
         <PokeDetail pokemonNumber={selectedPokemon} />
       ) : null}

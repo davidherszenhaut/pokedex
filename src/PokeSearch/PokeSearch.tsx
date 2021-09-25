@@ -12,14 +12,17 @@ const PokeSearch = ({ setSearchText }: Props): ReactElement => {
   };
 
   return (
-    <div>
+    <form className="max-w-lg flex flex-row justify-around my-0 mx-auto items-center ">
+      <label className="text-gray-500 font-bold">Search for a pokémon!</label>
       <input
+        className="bg-gray-200 border-2 border-gray-200 rounded-md text-gray-700 px-2 focus:outline-none focus:border-purple-500 leading-tight py-2"
         type="text"
+        placeholder="Pikachu"
         onChange={(e) => {
           handleChange(e);
         }}
       ></input>
-    </div>
+    </form>
   );
 };
 

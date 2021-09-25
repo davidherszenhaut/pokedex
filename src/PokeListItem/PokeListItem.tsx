@@ -5,7 +5,6 @@ type SetSelectedPokemon = (pokemonNumber: number) => void;
 
 interface Props {
   pokemonName: string;
-  pokemonUrl: string;
   pokemonNumber: number;
   selectedPokemon: number;
   setSelectedPokemon: SetSelectedPokemon;
@@ -14,7 +13,6 @@ interface Props {
 
 const PokeListItem = ({
   pokemonName,
-  pokemonUrl,
   pokemonNumber,
   selectedPokemon,
   setSelectedPokemon,
@@ -39,20 +37,23 @@ const PokeListItem = ({
   };
 
   return pokemonName.includes(searchText) ? (
-    <div>
+    <section className="border-2 rounded-md shadow-md flex justify-center flex-col items-center hover:border-purple-500 transition-colors">
+      <div className="relative w-28 h-28 flex justify-center items-center">
+        <div className="w-24 h-24 rounded-full bg-gray-200 absolute"></div>
+        {pokemonSpriteURL ? (
+          <img
+            src={pokemonSpriteURL}
+            alt={pokemonName}
+            onClick={handleClick}
+            className="absolute w-24 h-24"
+          ></img>
+        ) : null}
+      </div>
       <p>
-        <a href={pokemonUrl}>
-          #{pokemonId}. {capitalize(pokemonName)}
-        </a>
+        <span className="text-gray-400">#{pokemonId}</span>{" "}
+        {capitalize(pokemonName)}
       </p>
-      {pokemonSpriteURL ? (
-        <img
-          src={pokemonSpriteURL}
-          alt={pokemonName}
-          onClick={handleClick}
-        ></img>
-      ) : null}
-    </div>
+    </section>
   ) : (
     <></>
   );
