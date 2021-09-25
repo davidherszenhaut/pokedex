@@ -37,7 +37,7 @@ const PokeListItem = ({
   };
 
   return pokemonName.includes(searchText) ? (
-    <section className="border-2 rounded-md shadow-md flex justify-center flex-col items-center">
+    <section className="border-2 rounded-md shadow-md flex justify-center flex-col items-center hover:border-purple-500 transition-colors">
       {pokemonSpriteURL ? (
         <img
           src={pokemonSpriteURL}
