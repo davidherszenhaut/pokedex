@@ -50,7 +50,8 @@ const PokeListItem = ({
         ) : null}
       </div>
       <p>
-        #{pokemonId}. {capitalize(pokemonName)}
+        <span className="text-gray-400">#{pokemonId}</span>{" "}
+        {capitalize(pokemonName)}
       </p>
     </section>
   ) : (
