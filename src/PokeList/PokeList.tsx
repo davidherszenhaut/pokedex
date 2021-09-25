@@ -31,7 +31,7 @@ const PokeList = ({ searchText }: Props): ReactElement => {
   ));
 
   return (
-    <main className="grid grid-cols-3 gap-4 pt-8">
+    <div className="grid grid-cols-3 gap-4 pt-8 px-4">
       {/**
        * @todo Move PokeDetail up to App.
        */}
@@ -39,7 +39,7 @@ const PokeList = ({ searchText }: Props): ReactElement => {
         <PokeDetail pokemonNumber={selectedPokemon} />
       ) : null}
       {listPokemon}
-    </main>
+    </div>
   );
 };
 
