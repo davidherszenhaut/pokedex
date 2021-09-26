@@ -63,7 +63,7 @@ const PokeDetail = ({
         setPokemonGeneration(data.generation.name.split("-")[1].toUpperCase());
         data.habitat && data.habitat.name
           ? setPokemonHabitat(data.habitat.name)
-          : setPokemonHabitat("N/A");
+          : setPokemonHabitat("");
         setIsLoading(false);
       });
   }, [pokemonNumber]);
@@ -135,7 +135,10 @@ const PokeDetail = ({
                       Generation {pokemonGeneration}
                     </p>
                     <p className="w-full pt-3">
-                      Habitat: {capitalize(pokemonHabitat)}
+                      Habitat:{" "}
+                      {pokemonHabitat.length > 0
+                        ? capitalize(pokemonHabitat)
+                        : "N/A"}
                     </p>
                   </div>
                   <div className="mt-4">
