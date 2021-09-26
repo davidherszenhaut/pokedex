@@ -11,6 +11,7 @@ const PokeList = ({ searchText }: Props): ReactElement => {
   const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon?limit=${NUMBER_OF_POKEMON_TOTAL}`)
@@ -21,14 +22,18 @@ const PokeList = ({ searchText }: Props): ReactElement => {
       });
   }, []);
 
+  useEffect(() => {
+    selectedPokemon !== 0 ? setIsOpen(true) : setIsOpen(false);
+  }, [selectedPokemon]);
+
   const listPokemon = pokemonList.map((pokemon, index) => (
     <PokeListItem
       key={pokemon.name}
       pokemonName={pokemon.name}
       pokemonNumber={index + 1}
-      selectedPokemon={selectedPokemon}
       setSelectedPokemon={setSelectedPokemon}
       searchText={searchText}
+      setIsOpen={setIsOpen}
     />
   ));
 
@@ -39,14 +44,17 @@ const PokeList = ({ searchText }: Props): ReactElement => {
       className="animate-spin m-auto py-40"
     ></img>
   ) : (
-    <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-4">
-      {/**
-       * @todo Move PokeDetail up to App.
-       */}
+    <div>
       {selectedPokemon !== 0 ? (
-        <PokeDetail pokemonNumber={selectedPokemon} />
+        <PokeDetail
+          pokemonNumber={selectedPokemon}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       ) : null}
-      {listPokemon}
+      <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-6">
+        {listPokemon}
+      </div>
     </div>
   );
 };
