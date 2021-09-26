@@ -20,6 +20,7 @@ const PokeListItem = ({
 }: Props): ReactElement => {
   const [pokemonSpriteURL, setPokemonSpriteURL] = useState<string>("");
   const [pokemonId, setPokemonId] = useState<number>(pokemonNumber);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetch(`${BASE_URL}pokemon/${pokemonNumber}`)
@@ -27,6 +28,7 @@ const PokeListItem = ({
       .then((data) => {
         setPokemonSpriteURL(data.sprites.front_default);
         setPokemonId(data.id);
+        setIsLoading(false);
       });
   }, []);
 
@@ -36,7 +38,13 @@ const PokeListItem = ({
       : setSelectedPokemon(pokemonNumber);
   };
 
-  return pokemonName.includes(searchText) ? (
+  return isLoading ? (
+    <img
+      src={process.env.PUBLIC_URL + "/logo64.png"}
+      alt="Loading..."
+      className="animate-spin"
+    ></img>
+  ) : pokemonName.includes(searchText) ? (
     <section className="border-2 rounded-md shadow-md flex justify-center flex-col items-center hover:border-purple-500 transition-colors">
       <div className="relative w-28 h-28 flex justify-center items-center">
         <div className="w-24 h-24 rounded-full bg-gray-200 absolute"></div>
@@ -50,7 +58,7 @@ const PokeListItem = ({
         ) : null}
       </div>
       <p>
-        <span className="text-gray-400">#{pokemonId}</span>{" "}
+        <span className="text-gray-500">#{pokemonId}</span>{" "}
         {capitalize(pokemonName)}
       </p>
     </section>
