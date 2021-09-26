@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import solrock from "../images/solrock.png";
 import solrockSilhouette from "../images/solrock-silhouette.png";
 import lunatone from "../images/lunatone.png";
@@ -6,6 +6,11 @@ import lunatoneSilhouette from "../images/lunatone-silhouette.png";
 
 const PokeHeader = (): ReactElement => {
   const [isLightMode, setIsLightMode] = useState<boolean>(true);
+
+  useEffect(() => {
+    const htmlClasses = document.documentElement.classList;
+    isLightMode ? htmlClasses.remove("dark") : htmlClasses.add("dark");
+  }, [isLightMode]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setIsLightMode(false) : setIsLightMode(true);
