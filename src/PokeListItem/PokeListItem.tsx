@@ -2,21 +2,22 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { BASE_URL, capitalize } from "../utils";
 
 type SetSelectedPokemon = (pokemonNumber: number) => void;
+type SetIsOpen = (isOpen: boolean) => void;
 
 interface Props {
   pokemonName: string;
   pokemonNumber: number;
-  selectedPokemon: number;
   setSelectedPokemon: SetSelectedPokemon;
   searchText: string;
+  setIsOpen: SetIsOpen;
 }
 
 const PokeListItem = ({
   pokemonName,
   pokemonNumber,
-  selectedPokemon,
   setSelectedPokemon,
   searchText,
+  setIsOpen,
 }: Props): ReactElement => {
   const [pokemonSpriteURL, setPokemonSpriteURL] = useState<string>("");
   const [pokemonId, setPokemonId] = useState<number>(pokemonNumber);
@@ -33,9 +34,8 @@ const PokeListItem = ({
   }, []);
 
   const handleClick = () => {
-    selectedPokemon === pokemonNumber
-      ? setSelectedPokemon(0)
-      : setSelectedPokemon(pokemonNumber);
+    setSelectedPokemon(pokemonNumber);
+    setIsOpen(true);
   };
 
   return isLoading ? (
