@@ -43,7 +43,7 @@ const PokeList = ({ searchText }: Props): ReactElement => {
       {selectedPokemon !== 0 ? (
         <PokeDetail pokemonNumber={selectedPokemon} />
       ) : null}
-      <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-6">
         {listPokemon}
       </div>
     </div>

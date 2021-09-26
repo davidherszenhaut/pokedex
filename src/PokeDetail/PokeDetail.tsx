@@ -19,7 +19,7 @@ const PokeDetail = ({ pokemonNumber }: Props): ReactElement => {
   }, [pokemonNumber]);
 
   return (
-    <div>
+    <div className="border-red-800 border-2">
       {pokemonName} - {pokemonSpriteUrl}
     </div>
   );
