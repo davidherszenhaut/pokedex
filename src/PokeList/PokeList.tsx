@@ -39,14 +39,13 @@ const PokeList = ({ searchText }: Props): ReactElement => {
       className="animate-spin m-auto py-40"
     ></img>
   ) : (
-    <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-4">
-      {/**
-       * @todo Move PokeDetail up to App.
-       */}
+    <div>
       {selectedPokemon !== 0 ? (
         <PokeDetail pokemonNumber={selectedPokemon} />
       ) : null}
-      {listPokemon}
+      <div className="grid grid-cols-2 gap-4 pt-8 px-4 md:grid-cols-3 lg:grid-cols-4">
+        {listPokemon}
+      </div>
     </div>
   );
 };
