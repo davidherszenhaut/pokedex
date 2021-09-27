@@ -14,6 +14,13 @@ export interface Props {
   setIsOpen: SetIsOpen;
 }
 
+export interface TypeEntry {
+  /** The number of the type. */
+  slot: number;
+  /** A mapping of the type name and URL. */
+  type: Record<string, string>;
+}
+
 export interface FlavorTextEntry {
   /** The flavor text sentence. */
   flavor_text: string;
@@ -42,6 +49,7 @@ const PokeDetail = ({
 }: Props): ReactElement => {
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonSpriteUrl, setPokemonSpriteUrl] = useState<string>("");
+  const [pokemonTypes, setPokemonTypes] = useState<string[]>([]);
   const [pokemonFlavorTexts, setPokemonFlavorTexts] = useState<FlavorText[]>(
     []
   );
@@ -55,8 +63,9 @@ const PokeDetail = ({
     fetch(`${BASE_URL}pokemon/${pokemonNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        setPokemonSpriteUrl(data.sprites.front_default);
         setPokemonName(data.name);
+        setPokemonSpriteUrl(data.sprites.front_default);
+        setPokemonTypes(data.types.map((entry: TypeEntry) => entry.type.name));
       });
     fetch(`${BASE_URL}pokemon-species/${pokemonNumber}`)
       .then((response) => response.json())
@@ -154,6 +163,13 @@ const PokeDetail = ({
                         ? capitalize(pokemonHabitat)
                         : "N/A"}
                     </p>
+                    <div className="w-full pt-3 flex flex-row justify-items-start">
+                      {pokemonTypes.map((type) => (
+                        <p key={type} className="mr-3">
+                          {capitalize(type)}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                   <div className="mt-4">
                     <button
