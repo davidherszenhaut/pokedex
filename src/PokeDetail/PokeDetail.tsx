@@ -2,25 +2,39 @@ import React, { Fragment, ReactElement, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { BASE_URL, capitalize } from "../utils";
 
-type SetIsOpen = (isOpen: boolean) => void;
+/** A function to lift up the state of the dialog. */
+export type SetIsOpen = (isOpen: boolean) => void;
 
-interface Props {
+export interface Props {
+  /** The National ID number of the Pokémon. */
   pokemonNumber: number;
+  /** A boolean determining whether the dialog is open or not. */
   isOpen: boolean;
+  /** A function to lift up the state of the dialog. */
   setIsOpen: SetIsOpen;
 }
 
-interface FlavorTextEntry {
+export interface FlavorTextEntry {
+  /** The flavor text sentence. */
   flavor_text: string;
+  /** The language of the flavor text sentence. */
   language: Record<string, string>;
+  /** The game version that the flavor text sentence is from. */
   version: Record<string, string>;
 }
 
-interface FlavorText {
+export interface FlavorText {
+  /** The game version that the flavor text sentence is from. */
   version: string;
+  /** The flavor text sentence. */
   text: string;
 }
 
+/**
+ * A component displaying the details of the selected Pokémon.
+ * @param Props The props of the component.
+ * @returns A component displaying the details of the selected Pokémon.
+ */
 const PokeDetail = ({
   pokemonNumber,
   isOpen,

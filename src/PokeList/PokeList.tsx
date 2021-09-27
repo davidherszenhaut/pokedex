@@ -3,10 +3,16 @@ import PokeDetail from "../PokeDetail/PokeDetail";
 import PokeListItem from "../PokeListItem/PokeListItem";
 import { BASE_URL, NUMBER_OF_POKEMON_TOTAL, BasicPokemon } from "../utils";
 
-interface Props {
+export interface Props {
+  /** The search text from PokeSearch. */
   searchText: string;
 }
 
+/**
+ * A component displaying the list of Pokémon.
+ * @param Props The props of the component.
+ * @returns A component displaying the list of Pokémon.
+ */
 const PokeList = ({ searchText }: Props): ReactElement => {
   const [pokemonList, setPokemonList] = useState<BasicPokemon[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<number>(0);
@@ -26,6 +32,10 @@ const PokeList = ({ searchText }: Props): ReactElement => {
     selectedPokemon !== 0 ? setIsOpen(true) : setIsOpen(false);
   }, [selectedPokemon]);
 
+  /**
+   * A function to map the list of Pokémon to generate
+   * PokeListItems for each one.
+   */
   const listPokemon = pokemonList.map((pokemon, index) => (
     <PokeListItem
       key={pokemon.name}

@@ -4,6 +4,10 @@ import solrockSilhouette from "../images/solrock-silhouette.png";
 import lunatone from "../images/lunatone.png";
 import lunatoneSilhouette from "../images/lunatone-silhouette.png";
 
+/**
+ * A component containing the header element.
+ * @returns A component containing the header element.
+ */
 const PokeHeader = (): ReactElement => {
   const [isLightMode, setIsLightMode] = useState<boolean>(true);
 
@@ -12,6 +16,10 @@ const PokeHeader = (): ReactElement => {
     isLightMode ? htmlClasses.remove("dark") : htmlClasses.add("dark");
   }, [isLightMode]);
 
+  /**
+   * A way to update the color theme of the site.
+   * @param e The onChange event of the checkbox.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.target.checked ? setIsLightMode(false) : setIsLightMode(true);
   };

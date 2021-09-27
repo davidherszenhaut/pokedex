@@ -1,17 +1,30 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { BASE_URL, capitalize } from "../utils";
 
-type SetSelectedPokemon = (pokemonNumber: number) => void;
-type SetIsOpen = (isOpen: boolean) => void;
+/** A function to lift up the selected Pokémon. */
+export type SetSelectedPokemon = (pokemonNumber: number) => void;
+/** A function to lift up the state of the dialog. */
+export type SetIsOpen = (isOpen: boolean) => void;
 
-interface Props {
+export interface Props {
+  /** The name of the Pokémon. */
   pokemonName: string;
+  /** The National ID number of the Pokémon. */
   pokemonNumber: number;
+  /** A function to lift up the selected Pokémon. */
   setSelectedPokemon: SetSelectedPokemon;
+  /** The search text from PokeSearch. */
   searchText: string;
+  /** A function to lift up the state of the dialog. */
   setIsOpen: SetIsOpen;
 }
 
+/**
+ * A component displaying the dialog and the list of Pokémon.
+ * @param Props The props of the component.
+ * @returns A component displaying the dialog and the list of
+ * Pokémon.
+ */
 const PokeListItem = ({
   pokemonName,
   pokemonNumber,
@@ -33,6 +46,10 @@ const PokeListItem = ({
       });
   }, []);
 
+  /**
+   * Handles setting the selected pokemon by ID number
+   * and opening the dialog.
+   */
   const handleClick = () => {
     setSelectedPokemon(pokemonNumber);
     setIsOpen(true);
