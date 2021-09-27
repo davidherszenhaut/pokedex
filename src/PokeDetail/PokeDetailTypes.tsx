@@ -63,7 +63,9 @@ const PokeDetailTypes = ({ pokemonTypes }: Props): ReactElement => {
       {pokemonTypes.map((type) => (
         <p
           key={type}
-          className={"mr-3 p-1 font-bold rounded-md " + getColor(type)}
+          className={
+            "mr-3 p-1 font-bold rounded-md text-white " + getColor(type)
+          }
         >
           {type.toUpperCase()}
         </p>
