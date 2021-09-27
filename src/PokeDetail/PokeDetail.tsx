@@ -54,6 +54,9 @@ const PokeDetail = ({
   const [pokemonFlavorTexts, setPokemonFlavorTexts] = useState<FlavorText[]>(
     []
   );
+  const [pokemonFlavorText, setPokemonFlavorText] = useState<string>("");
+  const [pokemonGameVersions, setPokemonGameVersions] = useState<string[]>([]);
+  const [pokemonGameVersion, setPokemonGameVersion] = useState<string>("");
   const [pokemonGenus, setPokemonGenus] = useState<string>("");
   const [pokemonGeneration, setPokemonGeneration] = useState<string>("");
   const [pokemonHabitat, setPokemonHabitat] = useState<string>("");
@@ -79,6 +82,11 @@ const PokeDetail = ({
               text: entry.flavor_text,
             }))
         );
+        setPokemonGameVersions(
+          data.flavor_text_entries
+            .filter((entry: FlavorTextEntry) => entry.language.name === "en")
+            .map((entry: FlavorTextEntry) => entry.version.name)
+        );
         setPokemonGenus(
           data.genera.filter(
             (entry: FlavorTextEntry) => entry.language.name === "en"
@@ -89,8 +97,18 @@ const PokeDetail = ({
           ? setPokemonHabitat(data.habitat.name)
           : setPokemonHabitat("");
         setIsLoading(false);
+        setPokemonGameVersion(pokemonGameVersions[0]);
+        setPokemonFlavorText(pokemonFlavorTexts[0].text);
       });
   }, [pokemonNumber]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    setPokemonGameVersion(e.target.value);
+    setPokemonFlavorText(
+      pokemonFlavorTexts.filter((entry) => entry.version === e.target.value)[0]
+        .text
+    );
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -158,8 +176,27 @@ const PokeDetail = ({
                       ></img>
                     </div>
 
+                    <label>
+                      Game
+                      <select
+                        value={pokemonGameVersion}
+                        onChange={(e) => handleChange(e)}
+                      >
+                        {pokemonGameVersions.map((game) => {
+                          return (
+                            <option value={game} key={game}>
+                              {game
+                                .split("-")
+                                .map((word) => capitalize(word))
+                                .join(" ")}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </label>
+
                     {pokemonFlavorTexts.length > 0 ? (
-                      <p>{pokemonFlavorTexts[0].text}</p>
+                      <p>{pokemonFlavorText.replace("", " ")}</p>
                     ) : null}
                     <p className="w-full pt-3">
                       Generation {pokemonGeneration}
