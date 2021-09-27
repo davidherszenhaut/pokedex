@@ -69,8 +69,9 @@ const PokeListItem = ({
           <img
             src={pokemonSpriteURL}
             alt={pokemonName}
+            loading="lazy"
             onClick={handleClick}
-            className="absolute w-24 h-24"
+            className="absolute w-24 h-24 cursor-pointer"
           ></img>
         ) : null}
       </div>
