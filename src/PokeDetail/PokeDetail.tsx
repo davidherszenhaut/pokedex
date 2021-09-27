@@ -1,4 +1,5 @@
 import React, { Fragment, ReactElement, useEffect, useState } from "react";
+import PokeDetailTypes from "./PokeDetailTypes";
 import { Dialog, Transition } from "@headlessui/react";
 import { BASE_URL, capitalize } from "../utils";
 
@@ -12,6 +13,13 @@ export interface Props {
   isOpen: boolean;
   /** A function to lift up the state of the dialog. */
   setIsOpen: SetIsOpen;
+}
+
+export interface TypeEntry {
+  /** The number of the type. */
+  slot: number;
+  /** A mapping of the type name and URL. */
+  type: Record<string, string>;
 }
 
 export interface FlavorTextEntry {
@@ -42,6 +50,7 @@ const PokeDetail = ({
 }: Props): ReactElement => {
   const [pokemonName, setPokemonName] = useState<string>("");
   const [pokemonSpriteUrl, setPokemonSpriteUrl] = useState<string>("");
+  const [pokemonTypes, setPokemonTypes] = useState<string[]>([]);
   const [pokemonFlavorTexts, setPokemonFlavorTexts] = useState<FlavorText[]>(
     []
   );
@@ -55,8 +64,9 @@ const PokeDetail = ({
     fetch(`${BASE_URL}pokemon/${pokemonNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        setPokemonSpriteUrl(data.sprites.front_default);
         setPokemonName(data.name);
+        setPokemonSpriteUrl(data.sprites.front_default);
+        setPokemonTypes(data.types.map((entry: TypeEntry) => entry.type.name));
       });
     fetch(`${BASE_URL}pokemon-species/${pokemonNumber}`)
       .then((response) => response.json())
@@ -140,8 +150,14 @@ const PokeDetail = ({
                   >
                     {capitalize(pokemonName)}, the {pokemonGenus}
                   </Dialog.Title>
-                  <div className="mt-2 text-left flex flex-col justify-center items-center">
-                    <img src={pokemonSpriteUrl}></img>
+                  <div className="mt-2 text-left flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full bg-gray-200 my-4">
+                      <img
+                        src={pokemonSpriteUrl}
+                        alt={"An image of " + pokemonName}
+                      ></img>
+                    </div>
+
                     {pokemonFlavorTexts.length > 0 ? (
                       <p>{pokemonFlavorTexts[0].text}</p>
                     ) : null}
@@ -154,6 +170,7 @@ const PokeDetail = ({
                         ? capitalize(pokemonHabitat)
                         : "N/A"}
                     </p>
+                    <PokeDetailTypes pokemonTypes={pokemonTypes} />
                   </div>
                   <div className="mt-4">
                     <button
