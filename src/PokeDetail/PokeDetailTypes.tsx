@@ -10,7 +10,7 @@ export interface Props {
  * @param type The type to "look up".
  * @returns The matching color of `type`.
  */
-const getColor = (type: string): string => {
+export const getColor = (type: string): string => {
   switch (type) {
     case "normal":
       return "bg-gray-500";
@@ -23,7 +23,7 @@ const getColor = (type: string): string => {
     case "ground":
       return "bg-yellow-300";
     case "rock":
-      return "bg-yellow-500";
+      return "bg-yellow-600";
     case "bug":
       return "bg-green-400";
     case "ghost":
