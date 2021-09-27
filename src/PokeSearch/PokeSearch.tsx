@@ -1,12 +1,23 @@
 import React, { ReactElement } from "react";
 
-type SetSearchText = (text: string) => void;
+/** A function to lift the state of the text input. */
+export type SetSearchText = (text: string) => void;
 
-interface Props {
+export interface Props {
+  /** A function to lift the state of the text input. */
   setSearchText: SetSearchText;
 }
 
+/**
+ * A component containing the search bar.
+ * @param setSearchText A function to lift the state of the text input.
+ * @returns A component containing the search bar.
+ */
 const PokeSearch = ({ setSearchText }: Props): ReactElement => {
+  /**
+   * A way to update the site's state of the text input contents.
+   * @param e The onChange event of the text input.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
