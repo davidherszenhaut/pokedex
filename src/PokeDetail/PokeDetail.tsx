@@ -150,8 +150,14 @@ const PokeDetail = ({
                   >
                     {capitalize(pokemonName)}, the {pokemonGenus}
                   </Dialog.Title>
-                  <div className="mt-2 text-left flex flex-col justify-center items-center">
-                    <img src={pokemonSpriteUrl}></img>
+                  <div className="mt-2 text-left flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full bg-gray-200 my-4">
+                      <img
+                        src={pokemonSpriteUrl}
+                        alt={"An image of " + pokemonName}
+                      ></img>
+                    </div>
+
                     {pokemonFlavorTexts.length > 0 ? (
                       <p>{pokemonFlavorTexts[0].text}</p>
                     ) : null}
