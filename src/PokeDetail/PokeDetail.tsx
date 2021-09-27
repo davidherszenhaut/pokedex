@@ -1,4 +1,5 @@
 import React, { Fragment, ReactElement, useEffect, useState } from "react";
+import PokeDetailTypes from "./PokeDetailTypes";
 import { Dialog, Transition } from "@headlessui/react";
 import { BASE_URL, capitalize } from "../utils";
 
@@ -163,13 +164,7 @@ const PokeDetail = ({
                         ? capitalize(pokemonHabitat)
                         : "N/A"}
                     </p>
-                    <div className="w-full pt-3 flex flex-row justify-items-start">
-                      {pokemonTypes.map((type) => (
-                        <p key={type} className="mr-3">
-                          {capitalize(type)}
-                        </p>
-                      ))}
-                    </div>
+                    <PokeDetailTypes pokemonTypes={pokemonTypes} />
                   </div>
                   <div className="mt-4">
                     <button
