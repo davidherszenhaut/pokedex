@@ -23,7 +23,7 @@ const PokeSearch = ({ setSearchText }: Props): ReactElement => {
   };
 
   return (
-    <form className="my-0 mx-auto flex justify-center items-center">
+    <form className="my-0 mx-auto flex justify-center items-center flex-col md:flex-row">
       <label className="text-gray-500 font-bold pr-3 dark:text-white">
         Search for a pokémon!
       </label>

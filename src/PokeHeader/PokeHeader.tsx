@@ -25,10 +25,10 @@ const PokeHeader = (): ReactElement => {
   };
 
   return (
-    <header className="text-4xl text-center py-6 grid grid-cols-3">
+    <header className="text-4xl text-center py-6 grid justify-center grid-cols-1 md:grid-cols-3">
       <div></div>
       <h1 className="self-center">Pokédex</h1>
-      <div className="flex justify-end items-center space-x-2">
+      <div className="flex md:justify-end justify-center items-center space-x-2">
         <span className="text-sm text-gray-800 dark:text-gray-500">
           <img
             src={isLightMode ? solrock : solrockSilhouette}
