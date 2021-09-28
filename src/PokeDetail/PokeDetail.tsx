@@ -186,7 +186,7 @@ const PokeDetail = ({
                         <select
                           value={pokemonGameVersion}
                           onChange={(e) => handleChange(e)}
-                          className="ml-3 rounded-md bg-gray-200 border-2 border-gray-300 shadow-sm hover:border-purple-500 transition-colors"
+                          className="ml-3 rounded-md bg-gray-200 dark:bg-gray-700 border-2 border-gray-300 shadow-sm hover:border-purple-500 transition-colors"
                         >
                           {pokemonGameVersions.map((game) => {
                             return (
