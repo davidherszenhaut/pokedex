@@ -102,6 +102,10 @@ const PokeDetail = ({
       });
   }, [pokemonNumber]);
 
+  /**
+   * Updates the dropdown value and related state values.
+   * @param e The dropdown change event.
+   */
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     setPokemonGameVersion(e.target.value);
     setPokemonFlavorText(
@@ -176,24 +180,27 @@ const PokeDetail = ({
                       ></img>
                     </div>
 
-                    <label>
-                      Game
-                      <select
-                        value={pokemonGameVersion}
-                        onChange={(e) => handleChange(e)}
-                      >
-                        {pokemonGameVersions.map((game) => {
-                          return (
-                            <option value={game} key={game}>
-                              {game
-                                .split("-")
-                                .map((word) => capitalize(word))
-                                .join(" ")}
-                            </option>
-                          );
-                        })}
-                      </select>
-                    </label>
+                    <div className="w-full py-2">
+                      <label className="mr-3">
+                        Game:
+                        <select
+                          value={pokemonGameVersion}
+                          onChange={(e) => handleChange(e)}
+                          className="ml-3 rounded-md bg-gray-200 border-2 border-gray-300 shadow-sm hover:border-purple-500 transition-colors"
+                        >
+                          {pokemonGameVersions.map((game) => {
+                            return (
+                              <option value={game} key={game}>
+                                {game
+                                  .split("-")
+                                  .map((word) => capitalize(word))
+                                  .join(" ")}
+                              </option>
+                            );
+                          })}
+                        </select>
+                      </label>
+                    </div>
 
                     {pokemonFlavorTexts.length > 0 ? (
                       <p>{pokemonFlavorText.replace("", " ")}</p>
