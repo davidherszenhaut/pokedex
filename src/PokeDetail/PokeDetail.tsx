@@ -98,9 +98,6 @@ const PokeDetail = ({
           : setPokemonHabitat("");
         setIsLoading(false);
         setPokemonGameVersion(pokemonGameVersions[0]);
-        pokemonFlavorTexts.length > 0
-          ? setPokemonFlavorText(pokemonFlavorTexts[0].text)
-          : setPokemonFlavorText("");
       });
   }, [pokemonNumber]);
 
