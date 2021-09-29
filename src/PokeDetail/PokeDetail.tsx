@@ -104,6 +104,12 @@ const PokeDetail = ({
       });
   }, [pokemonNumber]);
 
+  useEffect(() => {
+    pokemonFlavorTexts.length > 0
+      ? setPokemonFlavorText(pokemonFlavorTexts[0].text)
+      : setPokemonFlavorText("");
+  }, [pokemonFlavorTexts]);
+
   /**
    * Updates the dropdown value and related state values.
    * @param e The dropdown change event.
